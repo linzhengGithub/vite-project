@@ -1,4 +1,8 @@
 .header {
   color: $theme-color;
+  display: block;
+  height: 600px;
+  width: 600px;
+  background: url('@assets/imgs/logo.png') no-repeat;
   text-decoration: dashed;
 }

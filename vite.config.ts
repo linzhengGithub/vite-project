@@ -41,4 +41,10 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    // 别名配置
+    alias: {
+      '@assets': path.join(__dirname, 'src/assets'),
+    },
+  },
 })
