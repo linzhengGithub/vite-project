@@ -1,4 +1,5 @@
 import path from 'path'
+import svgr from 'vite-plugin-svgr'
 import { defineConfig, normalizePath } from 'vite'
 import react from '@vitejs/plugin-react'
 import Unocss from 'unocss/vite'
@@ -19,6 +20,7 @@ export default defineConfig({
       ],
     }),
     viteEslint(),
+    svgr(),
   ],
   css: {
     postcss: {
