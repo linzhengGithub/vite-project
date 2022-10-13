@@ -18,6 +18,12 @@ const CDN_URL = 'xxxxxx'
 export default defineConfig({
   // 具体配置
   base: isProduction ? CDN_URL : '/',
+  optimizeDeps: {
+    // 将所有的 .vue 文件作为扫描入口，Vite 同时还支持各种格式的入口，包括: html、svelte、astro、js、jsx、ts和tsx
+    entries: ['**/*.vue'],
+    // 配置为一个字符串数组，将 `lodash-es` 和 `vue`两个包强制进行预构建
+    include: ['lodash-es', 'vue'],
+  },
   plugins: [
     react(),
     Unocss({
@@ -55,25 +61,25 @@ export default defineConfig({
     postcss: {
       plugins: [
         autoprefixer({
-        // 指定目标浏览器
+          // 指定目标浏览器
           overrideBrowserslist: ['Chrome > 40', 'ff > 31', 'ie 11'],
         }),
       ],
     },
     modules: {
-    // 一般我们可以通过 generateScopedName 属性来对生成的类名进行自定义
-    // 其中，name 表示当前文件名，local 表示类名
+      // 一般我们可以通过 generateScopedName 属性来对生成的类名进行自定义
+      // 其中，name 表示当前文件名，local 表示类名
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     },
     preprocessorOptions: {
       scss: {
-      // additionalData 的内容会在每个 scss 文件的开头自动注入
+        // additionalData 的内容会在每个 scss 文件的开头自动注入
         additionalData: `@import "${variablePath}";`,
       },
     },
   },
   resolve: {
-  // 别名配置
+    // 别名配置
     alias: {
       '@assets': path.join(__dirname, 'src/assets'),
     },
